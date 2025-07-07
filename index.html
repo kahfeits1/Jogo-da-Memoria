@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Jogo da Memória</h1>
+    <div id="nivel-container">
+        <label for="nivel">Nível: </label>
+        <select id="nivel">
+            <option value="facil">Fácil</option>
+            <option value="medio">Médio</option>
+            <option value="avancado">Avançado</option>
+        </select>
+    </div>
+    <div id="tema-container">
+        <label for="tema">Tema: </label>
+        <select id="tema">
+            <option value="frutas">Frutas</option>
+            <option value="animais">Animais</option>
+            <option value="comidas">Comidas</option>
+        </select>
+    </div>
+    <div id="painel">
+        <span id="tentativas">Tentativas: 0</span>
+        <span id="pares">Pares encontrados: 0</span>
+        <span id="cronometro">Tempo: 00:00</span>
+        <span id="recorde">Recorde: --:-- / -- tentativas</span>
+        <button id="reiniciar">Reiniciar</button>
+        <button id="toggle-som" title="Ativar/Desativar Som">🔊 Som</button>
+        <button id="toggle-tema" title="Alternar Tema">🌙 Tema</button>
+    </div>
+    <div id="tabuleiro" class="tabuleiro"></div>
+    <audio id="audio-acerto" src="acerto.mp3" preload="auto"></audio>
+    <audio id="audio-erro" src="erro.mp3" preload="auto"></audio>
+    <audio id="audio-virar" src="virar.mp3" preload="auto"></audio>
+    <div id="modal-vitoria" class="modal-vitoria-oculto">
+        <div class="modal-vitoria-conteudo">
+            <h2>Parabéns! Você venceu!</h2>
+            <p id="modal-tempo"></p>
+            <p id="modal-tentativas"></p>
+            <p id="modal-recorde"></p>
+            <button id="fechar-modal">OK</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

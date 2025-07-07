@@ -1,0 +1,347 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+body.claro {
+    background: #f4f4f4;
+    color: #222;
+}
+
+body.claro #tabuleiro {
+    background: transparent;
+}
+
+body.claro .carta {
+    background: #e0e0e0;
+    color: #222;
+}
+
+body.claro .carta .verso {
+    background: #e0e0e0;
+    color: #222;
+}
+
+body.claro .carta .frente {
+    background: #fff;
+    color: #222;
+}
+
+body.claro .carta.pareada {
+    background: #4caf50;
+    color: #fff;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+#painel {
+    margin: 20px 0;
+}
+
+#tabuleiro {
+    display: grid;
+    grid-gap: 15px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.carta {
+    width: 80px;
+    height: 100px;
+    background: #444;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+    box-shadow: 0 2px 8px #0008;
+    user-select: none;
+    perspective: 600px;
+    transform-style: preserve-3d;
+}
+
+.carta .frente, .carta .verso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.carta .frente {
+    background: #fff;
+    color: #222;
+    font-size: 2rem;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.carta .verso {
+    background: #444;
+    color: #fff;
+    font-size: 2rem;
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.carta.virada .frente {
+    z-index: 2;
+}
+
+.carta.virada .verso {
+    z-index: 1;
+}
+
+.carta .frente {
+    pointer-events: none;
+}
+
+.carta .verso {
+    pointer-events: none;
+}
+
+.carta.virada {
+    transform: rotateY(180deg);
+}
+
+.carta.pareada {
+    background: #4caf50;
+    color: #fff;
+    cursor: default;
+}
+
+#reiniciar {
+    margin-left: 20px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background: #2196f3;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#reiniciar:hover {
+    background: #1769aa;
+}
+
+#nivel-container {
+    margin: 20px 0 10px 0;
+}
+
+#nivel {
+    font-size: 1rem;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: none;
+    background: #333;
+    color: #fff;
+}
+
+.tabuleiro.grid-4 {
+    grid-template-columns: repeat(4, 80px);
+    max-width: 400px;
+}
+
+.tabuleiro.grid-5 {
+    grid-template-columns: repeat(5, 80px);
+    max-width: 500px;
+}
+
+.tabuleiro.grid-6 {
+    grid-template-columns: repeat(6, 80px);
+    max-width: 600px;
+}
+
+#toggle-som {
+    margin-left: 20px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background: #ff9800;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#toggle-som.mudo {
+    background: #757575;
+    color: #eee;
+}
+
+#toggle-som:hover {
+    background: #c66900;
+}
+
+#toggle-tema {
+    margin-left: 20px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background: #9c27b0;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#toggle-tema.ativo {
+    background: #ffd600;
+    color: #222;
+}
+
+#toggle-tema:hover {
+    background: #6d1b7b;
+}
+
+#cronometro {
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#recorde {
+    margin-left: 20px;
+    font-size: 1rem;
+    color: #ffd600;
+    font-weight: bold;
+}
+
+@keyframes brilho-par {
+    0% { box-shadow: 0 0 0 #fff0; }
+    50% { box-shadow: 0 0 24px 8px #ffd600; }
+    100% { box-shadow: 0 2px 8px #0008; }
+}
+
+.carta.pareada.flash {
+    animation: brilho-par 0.7s;
+}
+
+.modal-vitoria-oculto {
+    display: none;
+}
+
+#modal-vitoria {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-vitoria-conteudo {
+    background: #fff;
+    color: #222;
+    padding: 32px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px #000a;
+    text-align: center;
+    min-width: 260px;
+    max-width: 90vw;
+}
+
+body.claro .modal-vitoria-conteudo {
+    background: #f4f4f4;
+    color: #222;
+}
+
+#fechar-modal {
+    margin-top: 20px;
+    padding: 8px 24px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    border: none;
+    background: #2196f3;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#fechar-modal:hover {
+    background: #1769aa;
+}
+
+@media (max-width: 700px) {
+    #tabuleiro, .tabuleiro.grid-4, .tabuleiro.grid-5, .tabuleiro.grid-6 {
+        max-width: 98vw;
+        grid-gap: 8px;
+    }
+    .carta {
+        width: 48px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+    .carta .frente, .carta .verso {
+        font-size: 1.2rem;
+    }
+    .modal-vitoria-conteudo {
+        min-width: 160px;
+        padding: 18px 6px;
+    }
+    #painel, #nivel-container {
+        flex-direction: column;
+        gap: 6px;
+    }
+    #painel span, #painel button {
+        margin-left: 0 !important;
+        margin-top: 6px;
+    }
+}
+
+@media (max-width: 400px) {
+    .carta {
+        width: 32px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+    .carta .frente, .carta .verso {
+        font-size: 0.9rem;
+    }
+    .modal-vitoria-conteudo {
+        min-width: 90px;
+        padding: 8px 2px;
+    }
+}
+
+#tema-container {
+    margin: 10px 0 10px 0;
+}
+
+#tema {
+    font-size: 1rem;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: none;
+    background: #333;
+    color: #fff;
+} 
